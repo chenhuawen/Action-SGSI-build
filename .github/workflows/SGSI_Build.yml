@@ -62,7 +62,7 @@ jobs:
 
       - name: 下载ROM...
         run: |
-          cd $GITHUB_WORKSPACE/Tool-SGSI-build/10
+          cd $GITHUB_WORKSPACE/Tool-SGSI-build/11
           mkdir ./tmp
           axel -n $(nproc) -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -o "$GITHUB_WORKSPACE/Tool-SGSI-build/11/tmp/${{ github.event.inputs.ZIP_NAME }}" || wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/Tool-SGSI-build/11/tmp/${{ github.event.inputs.ZIP_NAME }}"
           echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/11/tmp/")"
