@@ -1,0 +1,147 @@
+# This is a basic workflow to help you get started with name: SGSI_Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      ROM_URL:
+        description: 'ROM_URL'
+        required: true
+        default: 'https://bigota.d.miui.com/21.6.17/miui_CEPHEUS_21.6.17_85de724c68_11.0.zip'
+'
+      ZIP_NAME:
+        description: 'ZIP_NAME'
+        required: true
+        default: 'miui_CEPHEUS_21.6.17_85de724c68_11.0.zip'
+      OS_TYPE:
+        description: 'OS_TYPE'
+        required: true
+        default: 'miui'
+      REPACK_NAME:
+        description: 'REPACK_NAME'
+        required: true
+        default: 'SGSI.zip'
+
+
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: 获取变量配置...
+        run: |
+          echo "BUILD_TIME=$(date +%s | md5sum | awk '{print substr($1,1,10)}')" >> $GITHUB_ENV
+          
+      - name: Clean Up
+        run: |
+          docker rmi `docker images -q`
+          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
+          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
+          sudo -E apt-get update
+          sudo -E apt-get -y autoremove --purge
+          sudo -E apt-get clean
+          df -h
+          
+      - name: Setting Up
+        run: |
+          sudo apt-get install -y git wget git zip unzip curl axel m4 
+          
+      - name: Download Tool-SGSI-build
+        run: |
+          git clone https://gitlab.com/Xayah/Tool-SGSI-build $GITHUB_WORKSPACE/Tool-SGSI-build
+          
+      - name: Initialization environment
+        run: |
+          sudo rm -rf $GITHUB_WORKSPACE/Tool-SGSI-build/11/apps_clean
+          sudo cp -r apps_clean $GITHUB_WORKSPACE/Tool-SGSI-build/11/apps_clean
+          sudo chmod 777 -R $GITHUB_WORKSPACE/Tool-SGSI-build
+          
+      - name: Download Rom
+        run: |
+          cd $GITHUB_WORKSPACE/Tool-SGSI-build/11
+          mkdir ./tmp
+          axel -n $(nproc) -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -o "$GITHUB_WORKSPACE/Tool-SGSI-build/11/tmp/${{ github.event.inputs.ZIP_NAME }}" || wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/Tool-SGSI-build/11/tmp/${{ github.event.inputs.ZIP_NAME }}"
+          echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/11/tmp/")"
+          
+      - name: 配置工具环境...
+        if: env.SETUP == 'true'
+        run: |
+          sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' $GITHUB_WORKSPACE/Tool-SGSI-build/setup.sh
+          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/setup.sh
+          sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"
+          java -version
+          
+      - name: make AB 
+        run: |
+          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/11/make.sh AB << EOF
+          ${{ github.event.inputs.ZIP_NAME }}
+          y
+          y
+          ${{ github.event.inputs.OS_TYPE }}
+          y
+          
+      - name: Zip SGSI 
+        run: |
+          cd $GITHUB_WORKSPACE/Tool-SGSI-build/11
+          pwd
+          zip -r ${{ github.event.inputs.REPACK_NAME }} SGSI/*
+          ls "${{ github.event.inputs.REPACK_NAME }}"
+          echo "--------------------------------------"
+          ls
+          echo "--------------------------------------"
+          mkdir upload
+          echo "--------------------------------------"
+          ls upload
+          echo "--------------------------------------"
+          if [ $(ls -l ${{ github.event.inputs.REPACK_NAME }} | awk '{print $5}') -gt 2147483647 ]; then tar cvzpf - ${{ github.event.inputs.REPACK_NAME }} | split -d -b 1024m - upload/${{ github.event.inputs.REPACK_NAME }}; else mv ${{ github.event.inputs.REPACK_NAME }} upload/${{ github.event.inputs.REPACK_NAME }}; fi
+          echo "--------------------------------------"
+          ls upload
+          echo "--------------------------------------"
+          
+      - name: 上传至Release...
+        uses: ncipollo/release-action@v1.8.0
+        with:
+          artifacts: "${{ github.workspace }}/Tool-SGSI-build/11/upload/*"
+          tag: "${{ github.event.inputs.REPACK_NAME }}_${{ env.BUILD_TIME }}"
+          body: "${{ github.event.inputs.REPACK_NAME }}_${{ env.BUILD_TIME }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
