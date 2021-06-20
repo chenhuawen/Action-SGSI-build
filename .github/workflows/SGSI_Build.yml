@@ -61,7 +61,7 @@ jobs:
           
       - name: Initialization environment
         run: |
-          git clone https://github.com/xiaoxindada/SGSI-build-tool.git -b $GITHUB_WORKSPACE/SGSI-build-tool
+          git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git $GITHUB_WORKSPACE/SGSI-build-tool
           
       - name: Download Rom
         run: |
