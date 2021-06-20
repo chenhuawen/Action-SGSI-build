@@ -63,12 +63,24 @@ jobs:
         run: |
           git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git $GITHUB_WORKSPACE/SGSI-build-tool
           
+      - name: Setting up ErfanGSI requirements withxiaoxindadaSGSI setup script
+        run: |
+          git clone https://github.com/xiaoxindada/actions_build_SGSI.git setupp
+          cd setupp/bin
+          sudo bash ./setup.sh   
+          
       - name: Download Rom
         run: |
           cd $GITHUB_WORKSPACE/SGSI-build-tool
           mkdir ./tmp
           axel -n $(nproc) -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -o "$GITHUB_WORKSPACE/SGSI-build-tool/10/tmp/${{ github.event.inputs.ZIP_NAME }}" || wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/SGSI-build-tool/10/tmp/${{ github.event.inputs.ZIP_NAME }}"
           echo "zip_file: $(ls "$GITHUB_WORKSPACE/SGSI-build-tool/10/tmp/")"
+          
+       - name: 替换自定义精简内容...
+        run: |
+          sudo rm -rf $GITHUB_WORKSPACE//SGSI-build-tool/10/apps_clean
+          sudo cp -r apps_clean $GITHUB_WORKSPACE//SGSI-build-tool/10/apps_clean
+          sudo chmod 777 -R $GITHUB_WORKSPACE//SGSI-build-tool    
           
       - name: 配置工具环境...
         if: env.SETUP == 'true'
