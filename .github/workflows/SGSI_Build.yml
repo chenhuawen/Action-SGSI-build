@@ -14,7 +14,7 @@ on:
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: 'miui'
+        default: 'color'
       REPACK_NAME:
         description: 'REPACK_NAME'
         required: true
@@ -61,7 +61,7 @@ jobs:
           
       - name: Initialization environment
         run: |
-          git clone https://github.com/xiaoxindada/SGSI-build-tool.git -b 10 $GITHUB_WORKSPACE/SGSI-build-tool
+          git clone https://github.com/xiaoxindada/SGSI-build-tool.git -b $GITHUB_WORKSPACE/SGSI-build-tool
           
       - name: Download Rom
         run: |
