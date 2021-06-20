@@ -48,36 +48,44 @@ jobs:
           
       - name: Setting Up
         run: |
-          sudo apt-get install -y git wget git zip unzip curl axel m4 
+           #sudo apt update && sudo apt upgrade -y
+            sudo apt-get install -y git wget git zip unzip curl axel m4
+            df -h
           
       - name: Download Tool-SGSI-build
-        run: |
-          git clone https://gitlab.com/Xayah/Tool-SGSI-build $GITHUB_WORKSPACE/Tool-SGSI-build
+        uses: robinraju/release-downloader@v1
+        with:  
+          repository: "xiaoxindada/SGSI-build-tool"
+          tag: "v1.8"
+          fileName: "SGSI-build-tool.tar"
           
       - name: Initialization environment
         run: |
-          sudo rm -rf $GITHUB_WORKSPACE/Tool-SGSI-build/10/apps_clean
-          sudo cp -r apps_clean $GITHUB_WORKSPACE/Tool-SGSI-build/10/apps_clean
-          sudo chmod 777 -R $GITHUB_WORKSPACE/Tool-SGSI-build
+          sudo tar -xf SGSI-build-tool.tar
+          sudo rm -rf SGSI-build-tool/10/setup.sh
+          sudo mv bin/setup.sh SGSI-build-tool/10/
+          cd SGSI-build-tool/10
+          sudo bash setup.sh
+          sudo chmod 777 -R $GITHUB_WORKSPACE/SGSI-build-tool
           
       - name: Download Rom
         run: |
-          cd $GITHUB_WORKSPACE/Tool-SGSI-build/10
+          cd $GITHUB_WORKSPACE/SGSI-build-tool/10
           mkdir ./tmp
-          axel -n $(nproc) -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -o "$GITHUB_WORKSPACE/Tool-SGSI-build/10/tmp/${{ github.event.inputs.ZIP_NAME }}" || wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/Tool-SGSI-build/10/tmp/${{ github.event.inputs.ZIP_NAME }}"
-          echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/10/tmp/")"
+          axel -n $(nproc) -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -o "$GITHUB_WORKSPACE/SGSI-build-tool/10/tmp/${{ github.event.inputs.ZIP_NAME }}" || wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/SGSI-build-tool/10/tmp/${{ github.event.inputs.ZIP_NAME }}"
+          echo "zip_file: $(ls "$GITHUB_WORKSPACE/SGSI-build-tool/10/tmp/")"
           
       - name: 配置工具环境...
         if: env.SETUP == 'true'
         run: |
-          sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' $GITHUB_WORKSPACE/Tool-SGSI-build/setup.sh
-          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/setup.sh
+          sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' $GITHUB_WORKSPACE/SGSI-build-tool/setup.sh
+          sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/setup.sh
           sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"
           java -version
           
       - name: make AB 
         run: |
-          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/11/make.sh AB << EOF
+          sudo bash $GITHUB_WORKSPACE/SGSI-build-tool/11/make.sh AB << EOF
           ${{ github.event.inputs.ZIP_NAME }}
           y
           y
@@ -86,7 +94,7 @@ jobs:
           
       - name: Zip SGSI 
         run: |
-          cd $GITHUB_WORKSPACE/Tool-SGSI-build/10
+          cd $GITHUB_WORKSPACE/SGSI-build-tool/10
           pwd
           zip -r ${{ github.event.inputs.REPACK_NAME }} SGSI/*
           ls "${{ github.event.inputs.REPACK_NAME }}"
@@ -105,7 +113,7 @@ jobs:
       - name: 上传至Release...
         uses: ncipollo/release-action@v1.8.0
         with:
-          artifacts: "${{ github.workspace }}/Tool-SGSI-build/10/upload/*"
+          artifacts: "${{ github.workspace }}/SGSI-build-tool/10/upload/*"
           tag: "${{ github.event.inputs.REPACK_NAME }}_${{ env.BUILD_TIME }}"
           body: "${{ github.event.inputs.REPACK_NAME }}_${{ env.BUILD_TIME }}"
           token: ${{ secrets.GITHUB_TOKEN }}
