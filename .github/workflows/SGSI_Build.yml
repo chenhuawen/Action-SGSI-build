@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://bigota.d.miui.com/21.6.17/miui_CEPHEUS_21.6.17_85de724c68_11.0.zip'
+        default: 'https://coloroswebsitefs.coloros.com/coloroswebsite-coloros-com/grs_20210514101850/PCHM10_11_OTA_1770_all_mEn3qE24Oezm.ozip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'miui_CEPHEUS_21.6.17_85de724c68_11.0.zip'
+        default: 'PCHM10_11_OTA_1770_all_mEn3qE24Oezm.ozip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
@@ -56,16 +56,16 @@ jobs:
           
       - name: Initialization environment
         run: |
-          sudo rm -rf $GITHUB_WORKSPACE/Tool-SGSI-build/11/apps_clean
-          sudo cp -r apps_clean $GITHUB_WORKSPACE/Tool-SGSI-build/11/apps_clean
+          sudo rm -rf $GITHUB_WORKSPACE/Tool-SGSI-build/10/apps_clean
+          sudo cp -r apps_clean $GITHUB_WORKSPACE/Tool-SGSI-build/10/apps_clean
           sudo chmod 777 -R $GITHUB_WORKSPACE/Tool-SGSI-build
           
       - name: Download Rom
         run: |
-          cd $GITHUB_WORKSPACE/Tool-SGSI-build/11
+          cd $GITHUB_WORKSPACE/Tool-SGSI-build/10
           mkdir ./tmp
-          axel -n $(nproc) -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -o "$GITHUB_WORKSPACE/Tool-SGSI-build/11/tmp/${{ github.event.inputs.ZIP_NAME }}" || wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/Tool-SGSI-build/11/tmp/${{ github.event.inputs.ZIP_NAME }}"
-          echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/11/tmp/")"
+          axel -n $(nproc) -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -o "$GITHUB_WORKSPACE/Tool-SGSI-build/10/tmp/${{ github.event.inputs.ZIP_NAME }}" || wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/Tool-SGSI-build/10/tmp/${{ github.event.inputs.ZIP_NAME }}"
+          echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/10/tmp/")"
           
       - name: 配置工具环境...
         if: env.SETUP == 'true'
@@ -86,7 +86,7 @@ jobs:
           
       - name: Zip SGSI 
         run: |
-          cd $GITHUB_WORKSPACE/Tool-SGSI-build/11
+          cd $GITHUB_WORKSPACE/Tool-SGSI-build/10
           pwd
           zip -r ${{ github.event.inputs.REPACK_NAME }} SGSI/*
           ls "${{ github.event.inputs.REPACK_NAME }}"
@@ -105,7 +105,7 @@ jobs:
       - name: 上传至Release...
         uses: ncipollo/release-action@v1.8.0
         with:
-          artifacts: "${{ github.workspace }}/Tool-SGSI-build/11/upload/*"
+          artifacts: "${{ github.workspace }}/Tool-SGSI-build/10/upload/*"
           tag: "${{ github.event.inputs.REPACK_NAME }}_${{ env.BUILD_TIME }}"
           body: "${{ github.event.inputs.REPACK_NAME }}_${{ env.BUILD_TIME }}"
           token: ${{ secrets.GITHUB_TOKEN }}
