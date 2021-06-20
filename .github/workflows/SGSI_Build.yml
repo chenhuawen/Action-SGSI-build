@@ -1,4 +1,4 @@
-# This is a basic workflow to help you get started with name: SGSI_Build
+name: SGSI_Build
 
 on:
   workflow_dispatch:
@@ -7,7 +7,6 @@ on:
         description: 'ROM_URL'
         required: true
         default: 'https://bigota.d.miui.com/21.6.17/miui_CEPHEUS_21.6.17_85de724c68_11.0.zip'
-'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
