@@ -63,7 +63,6 @@ jobs:
         run: |
           sudo tar -xf SGSI-build-tool.tar
           sudo rm -rf SGSI-build-tool/10/setup.sh
-          sudo mv bin/setup.sh SGSI-build-tool/10/
           cd SGSI-build-tool/10
           sudo bash setup.sh
           sudo chmod 777 -R $GITHUB_WORKSPACE/SGSI-build-tool
