@@ -43,23 +43,28 @@ jobs:
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           df -h
+          
       - name: 配置环境...
         run: |
           sudo apt-get install -y git wget git zip unzip curl axel
+          
       - name: 获取SGSI工具...
         run: |
           git clone https://gitlab.com/Xayah/Tool-SGSI-build $GITHUB_WORKSPACE/Tool-SGSI-build
+          
       - name: 替换自定义精简内容...
         run: |
           sudo rm -rf $GITHUB_WORKSPACE/Tool-SGSI-build/apps_clean
           sudo cp -r apps_clean $GITHUB_WORKSPACE/Tool-SGSI-build/apps_clean
           sudo chmod 777 -R $GITHUB_WORKSPACE/Tool-SGSI-build
+          
       - name: 下载ROM...
         run: |
           cd $GITHUB_WORKSPACE/Tool-SGSI-build
           mkdir ./tmp
           axel -n $(nproc) -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -o "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/${{ github.event.inputs.ZIP_NAME }}" || wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/${{ github.event.inputs.ZIP_NAME }}"
           echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/")"
+          
       - name: 配置工具环境...
         if: env.SETUP == 'true'
         run: |
@@ -67,6 +72,7 @@ jobs:
           sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/setup.sh
           sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"
           java -version
+          
       - name: 制作AB型GSI...
         run: |
           sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/make.sh AB << EOF
@@ -75,6 +81,7 @@ jobs:
           y
           ${{ github.event.inputs.OS_TYPE }}
           y
+          
       - name: 打包...
         run: |
           cd $GITHUB_WORKSPACE/Tool-SGSI-build
@@ -92,6 +99,7 @@ jobs:
           echo "--------------------------------------"
           ls upload
           echo "--------------------------------------"
+          
       - name: 上传至Release...
         uses: ncipollo/release-action@v1.8.0
         with:
