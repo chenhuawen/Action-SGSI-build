@@ -53,9 +53,6 @@ jobs:
       - name: Get the SGSI tool‌‌...
         run: |
           git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 11 SGSI-build-tool-11
-      - name: Replace custom condensed content...
-        run: |
-          sudo chmod 777 -R xiaoxindada/SGSI-build-tool-11
       - name: Download ROM‌‌...
         run: |
           cd $xiaoxindada/SGSI-build-tool-11
