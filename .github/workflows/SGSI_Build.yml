@@ -53,9 +53,13 @@ jobs:
       - name: Get the SGSI tool‌‌...
         run: |
           git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 11 SGSI-build-tool-11
+          sudo rm -rf SGSI-build-tool-11/setup.sh
+          sudo mv bin.sh/setup.sh SGSI-build-tool-11/
+          cd SGSI-build-tool-11
+          sudo bash setup.sh
       - name: Download ROM‌‌...
         run: |
-          cd $xiaoxindada/SGSI-build-tool-11
+          cd xiaoxindada/SGSI-build-tool-11
           mkdir ./tmp
           wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$xiaoxindada/SGSI-build-tool-11/tmp/${{ github.event.inputs.ZIP_NAME }}"
           echo "zip_file: $(ls "$xiaoxindada/SGSI-build-tool-11/tmp/")"
@@ -68,7 +72,7 @@ jobs:
       - name: Make AB type GSI‌‌...
         if: ${{ github.event.inputs.SGSI_TYPE }} == 'AB' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
-          sudo bash $xiaoxindada/SGSI-build-tool-11/make.sh AB << EOF
+          sudo bash xiaoxindada/SGSI-build-tool-11/make.sh AB << EOF
           ${{ github.event.inputs.ZIP_NAME }}
           y
           y
@@ -77,7 +81,7 @@ jobs:
       - name: Packing(AB)...
         if: ${{ github.event.inputs.SGSI_TYPE }} == 'AB' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
-          cd $xiaoxindada/SGSI-build-tool-11
+          cd xiaoxindada/SGSI-build-tool-11
           pwd
           zip -r AB_${{ github.event.inputs.REPACK_NAME }} SGSI/*
           ls "AB_${{ github.event.inputs.REPACK_NAME }}"
@@ -95,7 +99,7 @@ jobs:
       - name: Make A-only type GSI‌‌...
         if: ${{ github.event.inputs.SGSI_TYPE }} == 'A' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
-          sudo bash $xiaoxindada/SGSI-build-tool-11/make.sh A << EOF
+          sudo bash xiaoxindada/SGSI-build-tool-11/make.sh A << EOF
           ${{ github.event.inputs.ZIP_NAME }}
           y
           y
@@ -104,7 +108,7 @@ jobs:
       - name: Packing(A-only)...
         if: ${{ github.event.inputs.SGSI_TYPE }} == 'A' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
-          cd $xiaoxindada/SGSI-build-tool-11
+          cd xiaoxindada/SGSI-build-tool-11
           pwd
           zip -r AONLY_${{ github.event.inputs.REPACK_NAME }} SGSI/*
           ls "AONLY_${{ github.event.inputs.REPACK_NAME }}"
