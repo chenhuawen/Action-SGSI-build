@@ -54,7 +54,6 @@ jobs:
         run: |
           git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 11 SGSI-build-tool-11
           sudo rm -rf SGSI-build-tool-11/setup.sh
-          sudo bash setup.sh
       - name: Download ROM‌‌...
         run: |
           cd xiaoxindada/SGSI-build-tool-11
