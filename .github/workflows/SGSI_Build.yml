@@ -52,28 +52,28 @@ jobs:
           sudo apt-get install -y git wget git zip unzip curl axel
       - name: Get the SGSI tool‌‌...
         run: |
-          git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 11 $GITHUB_WORKSPACE/Tool-SGSI-build
+          git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 11 SGSI-build-tool-11
       - name: Replace custom condensed content...
         run: |
-          sudo rm -rf GITHUB_WORKSPACE/Tool-SGSI-build/apps_clean
-          sudo cp -r apps_clean $GITHUB_WORKSPACE/Tool-SGSI-build/apps_clean
-          sudo chmod 777 -R GITHUB_WORKSPACE/Tool-SGSI-build
+          sudo rm -rf xiaoxindada/SGSI-build-tool-11/apps_clean
+          sudo cp -r apps_clean xiaoxindada/SGSI-build-tool-11/apps_clean
+          sudo chmod 777 -R xiaoxindada/SGSI-build-tool-11
       - name: Download ROM‌‌...
         run: |
-          cd $GITHUB_WORKSPACE/Tool-SGSI-build
+          cd $xiaoxindada/SGSI-build-tool-11
           mkdir ./tmp
-          wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/${{ github.event.inputs.ZIP_NAME }}"
-          echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/")"
+          wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$xiaoxindada/SGSI-build-tool-11/tmp/${{ github.event.inputs.ZIP_NAME }}"
+          echo "zip_file: $(ls "$xiaoxindada/SGSI-build-tool-11/tmp/")"
       - name: Configuration tool environment...
         run: |
-          sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' $GITHUB_WORKSPACE/Tool-SGSI-build/setup.sh
-          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/setup.sh
+          sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' $xiaoxindada/SGSI-build-tool-11/setup.sh
+          sudo bash $xiaoxindada/SGSI-build-tool-11/setup.sh
           sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"
           java -version
       - name: Make AB type GSI‌‌...
         if: ${{ github.event.inputs.SGSI_TYPE }} == 'AB' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
-          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/make.sh AB << EOF
+          sudo bash $xiaoxindada/SGSI-build-tool-11/make.sh AB << EOF
           ${{ github.event.inputs.ZIP_NAME }}
           y
           y
@@ -82,7 +82,7 @@ jobs:
       - name: Packing(AB)...
         if: ${{ github.event.inputs.SGSI_TYPE }} == 'AB' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
-          cd $GITHUB_WORKSPACE/Tool-SGSI-build
+          cd $xiaoxindada/SGSI-build-tool-11
           pwd
           zip -r AB_${{ github.event.inputs.REPACK_NAME }} SGSI/*
           ls "AB_${{ github.event.inputs.REPACK_NAME }}"
@@ -100,7 +100,7 @@ jobs:
       - name: Make A-only type GSI‌‌...
         if: ${{ github.event.inputs.SGSI_TYPE }} == 'A' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
-          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/make.sh A << EOF
+          sudo bash $xiaoxindada/SGSI-build-tool-11/make.sh A << EOF
           ${{ github.event.inputs.ZIP_NAME }}
           y
           y
@@ -109,7 +109,7 @@ jobs:
       - name: Packing(A-only)...
         if: ${{ github.event.inputs.SGSI_TYPE }} == 'A' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
-          cd $GITHUB_WORKSPACE/Tool-SGSI-build
+          cd $xiaoxindada/SGSI-build-tool-11
           pwd
           zip -r AONLY_${{ github.event.inputs.REPACK_NAME }} SGSI/*
           ls "AONLY_${{ github.event.inputs.REPACK_NAME }}"
@@ -127,7 +127,7 @@ jobs:
       - name: Upload to Release‌‌...
         uses: ncipollo/release-action@v1.8.0
         with:
-          artifacts: "${{ github.workspace }}/Tool-SGSI-build/upload_ab/*,${{ github.workspace }}/Tool-SGSI-build/upload_aonly/*"
+          artifacts: "${{ github.workspace }}/SGSI-build-tool-11/upload_ab/*,${{ github.workspace }}/SGSI-build-tool-11/upload_aonly/*"
           tag: "${{ github.event.inputs.REPACK_NAME }}_${{ env.BUILD_TIME }}"
           bodyFile: "${{ github.workspace }}/Tool-SGSI-build/SGSI/build_info.txt"
           token: ${{ secrets.GITHUB_TOKEN }}
