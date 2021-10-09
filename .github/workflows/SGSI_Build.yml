@@ -56,8 +56,6 @@ jobs:
           sudo rm -rf SGSI-build-tool-11/setup.sh
       - name: Download ROM‌‌...
         run: |
-          cd SGSI-build-tool-11
-          mkdir ./tmp
           wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "SGSI-build-tool-11/tmp/${{ github.event.inputs.ZIP_NAME }}"
           echo "zip_file: $(ls "$/SGSI-build-tool-11/tmp/")"
       - name: Configuration tool environment...
