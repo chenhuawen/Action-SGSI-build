@@ -18,7 +18,7 @@ on:
       REPACK_NAME:
         description: 'REPACK_NAME'
         required: true
-        default: 'MIUI12.5_SGSI.zip'
+        default: 'MIUI12.5-11-SGSI.zip'
 
 
 
@@ -73,9 +73,9 @@ jobs:
           sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"
           java -version
 
-      - name: 制作A-Only型GSI...
+      - name: 制作AB-Only型GSI...
         run: |
-          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/make.sh A << EOF
+          sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/make.sh AB << EOF
           ${{ github.event.inputs.ZIP_NAME }}
           y
           y
