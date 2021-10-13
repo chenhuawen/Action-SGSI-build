@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://hugeota.d.miui.com/21.9.28/miui_DAVINCI_21.9.28_48aa8cdf69_11.0.zip'
+        default: 'https://bigota.d.miui.com/V12.5.4.0.RFACNXM/miui_CEPHEUS_V12.5.4.0.RFACNXM_62ddc4493a_11.0.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'miui_DAVINCI_21.9.28_48aa8cdf69_11.0.zip'
+        default: 'miui_CEPHEUS_V12.5.4.0.RFACNXM_62ddc4493a_11.0.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
