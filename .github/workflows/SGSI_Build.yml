@@ -6,19 +6,23 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'http://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2048_A_1.12.2-update-full_1625841864.zip'
+        default: 'https://bigota.d.miui.com/21.10.13/miui_CRUX_21.10.13_c155fd1018_11.0.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD2048_A_1.12.2-update-full_1625841864.zip'
+        default: 'miui_CRUX_21.10.13_c155fd1018_11.0.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: 'vivo'
+        default: 'miui'
+      SGSI_TYPE:
+        description: 'SGSI_TYPE(AB, A, or BOTH)'
+        required: true
+        default: 'AB'
       REPACK_NAME:
         description: 'REPACK_NAME'
         required: true
-        default: 'vivo-11-SGSI.zip'
+        default: 'SGSI.zip'
 
 
 
@@ -28,14 +32,13 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - name: 获取本仓库源码...
+      - name: Get the source code of this repositorie...
         uses: actions/checkout@main
 
-      - name: 获取变量配置...
+      - name: Get variable configuration...
         run: |
           echo "BUILD_TIME=$(date +%s | md5sum | awk '{print substr($1,1,10)}')" >> $GITHUB_ENV
-
-      - name: 清理环境...
+      - name: Clean up the environment‌‌...
         run: |
           docker rmi `docker images -q`
           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
@@ -44,36 +47,27 @@ jobs:
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           df -h
-
-      - name: 配置环境...
+      - name: Configuration Environment‌‌...
         run: |
           sudo apt-get install -y git wget git zip unzip curl axel
-
-      - name: 获取SGSI工具...
+      - name: Get the SGSI tool‌‌...
         run: |
           git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 11 $GITHUB_WORKSPACE/Tool-SGSI-build
-
-      - name: 替换自定义精简内容...
-        run: |
-          sudo rm -rf $GITHUB_WORKSPACE/Tool-SGSI-build/apps_clean
-          sudo cp -r apps_clean $GITHUB_WORKSPACE/Tool-SGSI-build/apps_clean
-          sudo chmod 777 -R $GITHUB_WORKSPACE/Tool-SGSI-build
-
-      - name: 下载ROM...
+          
+      - name: Download ROM‌‌...
         run: |
           cd $GITHUB_WORKSPACE/Tool-SGSI-build
           mkdir ./tmp
-          curl "${{ github.event.inputs.ROM_URL }}" --output "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/${{ github.event.inputs.ZIP_NAME }}"
+          wget -U "Mozilla/5.0" ${{ github.event.inputs.ROM_URL }} -O "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/${{ github.event.inputs.ZIP_NAME }}"
           echo "zip_file: $(ls "$GITHUB_WORKSPACE/Tool-SGSI-build/tmp/")"
-
-      - name: 配置工具环境...
+      - name: Configuration tool environment...
         run: |
           sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' $GITHUB_WORKSPACE/Tool-SGSI-build/setup.sh
           sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/setup.sh
           sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"
           java -version
-
-      - name: 制作AB-Only型GSI...
+      - name: Make AB type GSI‌‌...
+        if: ${{ github.event.inputs.SGSI_TYPE }} == 'AB' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
           sudo bash $GITHUB_WORKSPACE/Tool-SGSI-build/make.sh AB << EOF
           ${{ github.event.inputs.ZIP_NAME }}
@@ -81,29 +75,28 @@ jobs:
           y
           ${{ github.event.inputs.OS_TYPE }}
           y
-
-      - name: 打包...
+      - name: Packing(AB)...
+        if: ${{ github.event.inputs.SGSI_TYPE }} == 'AB' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
           cd $GITHUB_WORKSPACE/Tool-SGSI-build
           pwd
-          zip -r ${{ github.event.inputs.REPACK_NAME }} SGSI/*
-          ls "${{ github.event.inputs.REPACK_NAME }}"
+          zip -r AB_${{ github.event.inputs.REPACK_NAME }} SGSI/*
+          ls "AB_${{ github.event.inputs.REPACK_NAME }}"
           echo "--------------------------------------"
           ls
           echo "--------------------------------------"
-          mkdir upload
+          mkdir upload_ab
           echo "--------------------------------------"
-          ls upload
+          ls upload_ab
           echo "--------------------------------------"
-          if [ $(ls -l ${{ github.event.inputs.REPACK_NAME }} | awk '{print $5}') -gt 2147483647 ]; then tar cvzpf - ${{ github.event.inputs.REPACK_NAME }} | split -d -b 1024m - upload/${{ github.event.inputs.REPACK_NAME }}; else mv ${{ github.event.inputs.REPACK_NAME }} upload/${{ github.event.inputs.REPACK_NAME }}; fi
+          if [ $(ls -l AB_${{ github.event.inputs.REPACK_NAME }} | awk '{print $5}') -gt 2147483647 ]; then tar cvzpf - AB_${{ github.event.inputs.REPACK_NAME }} | split -d -b 1024m - upload_ab/AB_${{ github.event.inputs.REPACK_NAME }}; else mv AB_${{ github.event.inputs.REPACK_NAME }} upload_ab/AB_${{ github.event.inputs.REPACK_NAME }}; fi
           echo "--------------------------------------"
-          ls upload
+          ls upload_ab
           echo "--------------------------------------"
-
-      - name: 上传至Release...
+      - name: Upload to Release‌‌...
         uses: ncipollo/release-action@v1.8.0
         with:
-          artifacts: "${{ github.workspace }}/Tool-SGSI-build/upload/*"
+          artifacts: "${{ github.workspace }}/Tool-SGSI-build/upload_ab/*,${{ github.workspace }}/Tool-SGSI-build/upload_aonly/*"
           tag: "${{ github.event.inputs.REPACK_NAME }}_${{ env.BUILD_TIME }}"
           bodyFile: "${{ github.workspace }}/Tool-SGSI-build/SGSI/build_info.txt"
           token: ${{ secrets.GITHUB_TOKEN }}
