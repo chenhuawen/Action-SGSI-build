@@ -6,15 +6,15 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'http://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2066B_A_1.6.19-update-full_1618824048.zip'
+        default: 'https://download.h2os.com/OnePlus6T/MP/OnePlus6THydrogen_34.K.61_OTA_0610_all_2109280613_c8da429bc7e74e24.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD2066B_A_1.6.19-update-full_1618824048.zip'
+        default: 'OnePlus6THydrogen_34.K.61_OTA_0610_all_2109280613_c8da429bc7e74e24.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: 'vivo'
+        default: 'OnePlus'
       SGSI_TYPE:
         description: 'SGSI_TYPE(AB, A, or BOTH)'
         required: true
