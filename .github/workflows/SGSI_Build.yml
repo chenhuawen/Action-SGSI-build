@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'http://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2066_A_1.6.25-update-full_1624949929.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD1824_A_8.10.36-update-full_1634718654.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD2066_A_1.6.25-update-full_1624949929.zip'
+        default: 'PD1824_A_8.10.36-update-full_1634718654.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
