@@ -6,15 +6,15 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2148_A_1.7.25-update-full_1634737741.zip'
+        default: 'https://bigota.d.miui.com/V12.5.5.0.RFKCNXM/miui_RAPHAEL_V12.5.5.0.RFKCNXM_f3919faa90_11.0.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD2148_A_1.7.25-update-full_1634737741.zip'
+        default: 'miui_RAPHAEL_V12.5.5.0.RFKCNXM_f3919faa90_11.0.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: 'OxygenOS'
+        default: 'MIUI'
       SGSI_TYPE:
         description: 'SGSI_TYPE(AB, A, or BOTH)'
         required: true
