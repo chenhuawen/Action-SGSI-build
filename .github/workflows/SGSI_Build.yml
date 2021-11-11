@@ -6,15 +6,15 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD1813B_A_7.8.18-update-full_1634723933.zip'
+        default: 'http://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2106_A_1.6.9-update-full_1622774450.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD1813B_A_7.8.18-update-full_1634723933.zip'
+        default: 'PD2106_A_1.6.9-update-full_1622774450.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: 'MIUI'
+        default: 'vivo'
       SGSI_TYPE:
         description: 'SGSI_TYPE(AB, A, or BOTH)'
         required: true
