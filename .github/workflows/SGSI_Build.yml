@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://bigota.d.miui.com/V12.0.8.0.RKHCNXM/miui_ALIOTH_V12.0.8.0.RKHCNXM_14ccafdfff_11.0.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD1813B_A_7.8.18-update-full_1634723933.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'miui_ALIOTH_V12.0.8.0.RKHCNXM_14ccafdfff_11.0.zip'
+        default: 'PD1813B_A_7.8.18-update-full_1634723933.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
