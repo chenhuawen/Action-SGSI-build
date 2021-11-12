@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'http://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD1981_A_1.12.0-update-full_1598237886.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2148_A_1.7.25-update-full_1634737741.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD1981_A_1.12.0-update-full_1598237886.zip'
+        default: 'PD2148_A_1.7.25-update-full_1634737741.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
