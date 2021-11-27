@@ -6,15 +6,15 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2148_A_1.7.25-update-full_1634737741.zip'
+        default: 'https://cdn-test-ota.blackshark.com/KLE-A0/20210701135807-klein-ota-signed_by_xiaomi_66060e3c5075c9618a30e5f4542a03fb.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD2148_A_1.7.25-update-full_1634737741.zip'
+        default: '20210701135807-klein-ota-signed_by_xiaomi_66060e3c5075c9618a30e5f4542a03fb.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: 'vivo'
+        default: 'joyui'
       SGSI_TYPE:
         description: 'SGSI_TYPE(AB, A, or BOTH)'
         required: true
