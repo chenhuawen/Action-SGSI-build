@@ -6,15 +6,15 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://cdn-test-ota.blackshark.com/KLE-A0/20210701135807-klein-ota-signed_by_xiaomi_66060e3c5075c9618a30e5f4542a03fb.zip'
+        default: 'http://romdownload.nubia.com/Z20/V3.20/NX627J-update.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: '20210701135807-klein-ota-signed_by_xiaomi_66060e3c5075c9618a30e5f4542a03fb.zip'
+        default: 'NX627J-update.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: 'joyui'
+        default: 'nubia'
       SGSI_TYPE:
         description: 'SGSI_TYPE(AB, A, or BOTH)'
         required: true
