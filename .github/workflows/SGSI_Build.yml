@@ -6,7 +6,7 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'ttps://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2111_A_1.19.12-update-full_1639447067.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2111_A_1.19.12-update-full_1639447067.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
