@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2111_A_1.19.12-update-full_1639447067.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2085_A_1.14.2-update-full_1627451955.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD2111_A_1.19.12-update-full_1639447067.zip'
+        default: 'PD2085_A_1.14.2-update-full_1627451955.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
