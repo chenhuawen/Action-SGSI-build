@@ -6,15 +6,15 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'http://romdownload.nubia.com/%E5%8A%AA%E6%AF%94%E4%BA%9APlay/V3.28/NX651J-update.zip'
+        default: 'https://firmware.meizu.com/Firmware/Flyme/meizu18X/9.2.3.2/cn/20211202045911/25302566/update.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'NX651J-update.zip'
+        default: 'update.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: 'nubia'
+        default: 'Flyme'
       SGSI_TYPE:
         description: 'SGSI_TYPE(AB, A, or BOTH)'
         required: true
