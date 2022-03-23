@@ -7,7 +7,7 @@ on:
         description: 'ROM_URL'
         required: true
         default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2140_A_1.9.2-update-full_1643184071.zip'
- ZIP_NAME:
+      ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
         default: 'PD2140_A_1.9.2-update-full_1643184071.zip'
