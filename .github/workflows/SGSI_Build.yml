@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD1936_A_9.16.7-update-full_1643337342.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2047_A_1.24.6-update-full_1642428433.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD1936_A_9.16.7-update-full_1643337342.zip'
+        default: 'PD2047_A_1.24.6-update-full_1642428433.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
