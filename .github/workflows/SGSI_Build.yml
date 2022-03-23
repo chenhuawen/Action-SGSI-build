@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2047_A_1.24.6-update-full_1642428433.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2158_A_11.0.7.11.W10.V000L1-update-full_1644393192.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD2047_A_1.24.6-update-full_1642428433.zip'
+        default: 'PD2158_A_11.0.7.11.W10.V000L1-update-full_1644393192.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
