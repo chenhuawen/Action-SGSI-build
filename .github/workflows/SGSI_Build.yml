@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2140_A_1.9.2-update-full_1643184071.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2066_A_1.8.13-update-full_1643096265.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD2140_A_1.9.2-update-full_1643184071.zip'
+        default: 'PD2066_A_1.8.13-update-full_1643096265.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
