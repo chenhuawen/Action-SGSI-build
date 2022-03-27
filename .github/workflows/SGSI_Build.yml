@@ -14,7 +14,7 @@ on:
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: 'C'
+        default: 'OPPO'
       SGSI_TYPE:
         description: 'SGSI_TYPE(AB, A, or BOTH)'
         required: true
