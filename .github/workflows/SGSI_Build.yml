@@ -6,15 +6,15 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://gauss-componentotacostmanual-cn.allawnfs.com/component-ota/21/12/01/9019dc6c99df47f5aabc9860dc4791e5.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD1936_A_9.16.7-update-full_1643337342.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: '9019dc6c99df47f5aabc9860dc4791e5.zip'
+        default: 'PD1936_A_9.16.7-update-full_1643337342.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: 'OPPO'
+        default: ''
       SGSI_TYPE:
         description: 'SGSI_TYPE(AB, A, or BOTH)'
         required: true
