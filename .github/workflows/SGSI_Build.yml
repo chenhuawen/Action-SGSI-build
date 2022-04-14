@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'http://cdn-ota.blackshark.com/PRS-A0/20220405164052-penrose-ota-signed_by_xiaomi_81423d2b733714d03d6b91da5bfe0593.zip'
+        default: 'https://bigota.d.miui.com/V12.5.6.0.RFDMIXM/miui_TUCANAGlobal_V12.5.6.0.RFDMIXM_a598dd9cc8_11.0.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'update.zip'
+        default: 'miui_TUCANAGlobal_V12.5.6.0.RFDMIXM_a598dd9cc8_11.0.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
