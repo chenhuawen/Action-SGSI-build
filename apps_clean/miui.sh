@@ -11,10 +11,7 @@ Mipay
 MiuiBugReport
 Browser
 Calendar
-MiuiCamera
-MiuiGallery
 MiuiVideo
-Music
 QuickSearchBox
 talkback
 "
