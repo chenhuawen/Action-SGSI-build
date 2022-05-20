@@ -9,8 +9,6 @@ apps_dir="
 CameraTools
 Mipay
 MiuiBugReport
-Browser
-Calendar
 MiuiVideo
 QuickSearchBox
 talkback
