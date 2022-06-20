@@ -6,15 +6,15 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://bigota.d.miui.com/22.5.10/miui_TUCANA_22.5.10_8e357e69d5_11.0.zip'
+        default: 'https://hugeota.d.miui.com/V13.0.5.0.SLDCNXM/miui_PSYCHE_V13.0.5.0.SLDCNXM_0b5427be43_12.0.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'miui_TUCANA_22.5.10_8e357e69d5_11.0.zip'
+        default: 'miui_PSYCHE_V13.0.5.0.SLDCNXM_0b5427be43_12.0.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: '11'
+        default: '12'
       SGSI_TYPE:
         description: 'SGSI_TYPE(AB, A, or BOTH)'
         required: true
@@ -51,7 +51,7 @@ jobs:
           sudo apt-get install -y git wget git zip unzip curl axel dpkg
       - name: Get the SGSI tool‌‌...
         run: |
-          git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 11 $GITHUB_WORKSPACE/Tool-SGSI-build
+          git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 12 $GITHUB_WORKSPACE/Tool-SGSI-build
       - name: Replace custom condensed content...
         run: |
           sudo rm -rf $GITHUB_WORKSPACE/Tool-SGSI-build/apps_clean
