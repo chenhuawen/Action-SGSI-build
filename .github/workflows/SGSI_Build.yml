@@ -6,15 +6,15 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://hugeota.d.miui.com/V13.0.5.0.SLDCNXM/miui_PSYCHE_V13.0.5.0.SLDCNXM_0b5427be43_12.0.zip'
+        default: 'https://componentota-manual-cn.allawnfs.com/component-ota/21/10/17/8c89fffacdfe4f5b95bc576c10e0b15e.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'miui_PSYCHE_V13.0.5.0.SLDCNXM_0b5427be43_12.0.zip'
+        default: '8c89fffacdfe4f5b95bc576c10e0b15e.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
-        default: '12'
+        default: '11'
       SGSI_TYPE:
         description: 'SGSI_TYPE(AB, A, or BOTH)'
         required: true
