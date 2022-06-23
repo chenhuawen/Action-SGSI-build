@@ -7,10 +7,6 @@ systemdir=$1
 
 apps_dir="
 Email
-OppoCamera
-OppoEngineerCamera
-Browser
-#SogouInput
 HeytapBook
 BrowserVideo
 OPPOStore
@@ -24,7 +20,6 @@ KeKeUserCenter
 OppoGallery2t
 KeKePay
 OppoGallery2
-KeKeMarket
 KeKeUserCenter
 GooglePlayServicesUpdater
 GmsCore
