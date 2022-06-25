@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://componentota-manual-cn.allawnfs.com/component-ota/21/10/17/8c89fffacdfe4f5b95bc576c10e0b15e.zip'
+        default: 'https://firmware.meizu.com/Firmware/Flyme/meizu18X/9.2.3.3/cn/20220510102807/bc230e9b/update.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: '8c89fffacdfe4f5b95bc576c10e0b15e.zip'
+        default: 'update.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
