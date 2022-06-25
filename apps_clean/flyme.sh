@@ -15,7 +15,6 @@ RemoteCooperation
 VideoClips
 DesktopBackup
 FamilyGuard
-GmsCore
 Phonesky_CN
 "
 for delete_dir in $apps_dir ;do
