@@ -9,9 +9,6 @@ apps_dir="
 Email
 VivoTips
 vivoOffice
-VivoGallery
-iRoaming
-iRoamingService
 VideoPlayer
 vivoWallet
 iReader
@@ -24,8 +21,6 @@ VivoShare
 BBKAppStore
 UpnpServer
 EasyShare
-GmsCore
-GooglePlayServicesUpdater
 "
 for delete_dir in $apps_dir ;do
   find $systemdir -type d -name "$delete_dir" | xargs rm -rf
