@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://firmware.meizu.com/Firmware/Flyme/meizu18X/9.2.3.3/cn/20220510102807/bc230e9b/update.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD1936_A_9.16.7-update-full_1643337342.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'update.zip'
+        default: 'PD1936_A_9.16.7-update-full_1643337342.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
