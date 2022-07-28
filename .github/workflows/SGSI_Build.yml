@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'http://romdownload.nubia.com/%E7%BA%A2%E9%AD%945G/V9.42/NX659J-update.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2056_A_1.15.4-update-full_1630411745.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'NX659J-update.zip'
+        default: 'PD2056_A_1.15.4-update-full_1630411745.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
