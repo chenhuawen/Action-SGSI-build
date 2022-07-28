@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'http://romdownload.nubia.com/%E7%BA%A2%E9%AD%946/V8.10/NX669J-update.zip'
+        default: 'http://romdownload.nubia.com/%E7%BA%A2%E9%AD%945G/V9.42/NX659J-update.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'NX669J-update.zip'
+        default: 'NX659J-update.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
