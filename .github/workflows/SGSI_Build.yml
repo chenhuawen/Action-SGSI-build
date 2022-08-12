@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'http://download.h2os.com/OnePlus7T/MP/OnePlus7THydrogen_14.H.31_OTA_0310_all_2206241846_ccdec245f926498b.zip'
+        default: 'http://download.h2os.com/OnePlus8Pro/MP/OnePlus8ProHydrogen_15.H.45_OTA_0450_all_2202142225_140494bd81f848bc.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'OnePlus7THydrogen_14.H.31_OTA_0310_all_2206241846_ccdec245f926498b.zip'
+        default: 'OnePlus8ProHydrogen_15.H.45_OTA_0450_all_2202142225_140494bd81f848bc.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
