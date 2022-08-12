@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2056_A_1.15.4-update-full_1630411745.zip'
+        default: 'http://download.h2os.com/OnePlus7T/MP/OnePlus7THydrogen_14.H.31_OTA_0310_all_2206241846_ccdec245f926498b.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD2056_A_1.15.4-update-full_1630411745.zip'
+        default: 'OnePlus7THydrogen_14.H.31_OTA_0310_all_2206241846_ccdec245f926498b.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
