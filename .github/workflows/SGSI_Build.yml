@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'http://download.h2os.com/OnePlus8Pro/MP/OnePlus8ProHydrogen_15.H.45_OTA_0450_all_2202142225_140494bd81f848bc.zip'
+        default: 'https://bigota.d.miui.com/V12.5.3.0.RFACNXM/miui_CEPHEUS_V12.5.3.0.RFACNXM_b120263c44_11.0.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'OnePlus8ProHydrogen_15.H.45_OTA_0450_all_2202142225_140494bd81f848bc.zip'
+        default: 'miui_CEPHEUS_V12.5.3.0.RFACNXM_b120263c44_11.0.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
