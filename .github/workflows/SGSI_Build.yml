@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://bigota.d.miui.com/V12.5.3.0.RFACNXM/miui_CEPHEUS_V12.5.3.0.RFACNXM_b120263c44_11.0.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2141_A_1.16.4-update-full_1640072693.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'miui_CEPHEUS_V12.5.3.0.RFACNXM_b120263c44_11.0.zip'
+        default: 'PD2141_A_1.16.4-update-full_1640072693.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
