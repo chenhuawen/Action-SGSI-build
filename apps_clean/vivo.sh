@@ -18,15 +18,12 @@ VLife_vivo
 vivospace-v2
 Updater
 VivoShare
-BBKAppStore
 UpnpServer
 EasyShare
 "
 for delete_dir in $apps_dir ;do
   find $systemdir -type d -name "$delete_dir" | xargs rm -rf
 done
-
-rm -rf $systemdir/build-in-app/VHome.apk
 
 # Google gms精简需要的prop属性
 sed -i '/ro.com.google.gmsversion/d' $systemdir/product/build.prop
