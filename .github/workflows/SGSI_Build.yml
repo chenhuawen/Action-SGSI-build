@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2141_A_1.16.4-update-full_1640072693.zip'
+        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2047_A_5.11.3-update-full_1655190484.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD2141_A_1.16.4-update-full_1640072693.zip'
+        default: 'PD2047_A_5.11.3-update-full_1655190484.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
