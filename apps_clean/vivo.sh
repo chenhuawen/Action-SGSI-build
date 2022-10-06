@@ -15,6 +15,7 @@ iReader
 BBKCloud
 BuiltInPrintService
 VLife_vivo
+VivoDaemonService
 vivospace-v2
 Updater
 VivoShare
