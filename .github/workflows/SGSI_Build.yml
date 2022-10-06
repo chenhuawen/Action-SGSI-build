@@ -38,6 +38,7 @@ jobs:
       - name: Get variable configuration...
         run: |
           echo "BUILD_TIME=$(date +%s | md5sum | awk '{print substr($1,1,10)}')" >> $GITHUB_ENV
+          
       - name: Clean up the environment‌‌...
         run: |
           docker rmi `docker images -q`
@@ -47,17 +48,21 @@ jobs:
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
           df -h
+          
       - name: Configuration Environment‌‌...
         run: |
           sudo apt-get install -y git wget git zip unzip curl axel
+          
       - name: Get the SGSI tool‌‌...
         run: |
           git clone --recurse-submodules https://github.com/xiaoxindada/SGSI-build-tool.git -b 11 $GITHUB_WORKSPACE/Tool-SGSI-build
+          
       - name: Replace custom condensed content...
         run: |
           sudo rm -rf $GITHUB_WORKSPACE/Tool-SGSI-build/apps_clean
           sudo cp -r apps_clean $GITHUB_WORKSPACE/Tool-SGSI-build/apps_clean
           sudo chmod 777 -R $GITHUB_WORKSPACE/Tool-SGSI-build
+          
       - name: Make AB type GSI‌‌...
         if: ${{ github.event.inputs.SGSI_TYPE }} == 'AB' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
@@ -67,6 +72,7 @@ jobs:
           y
           ${{ github.event.inputs.OS_TYPE }}
           y
+          
       - name: Make AB type GSI‌‌...
         if: ${{ github.event.inputs.SGSI_TYPE }} == 'AB' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
@@ -76,6 +82,7 @@ jobs:
           y
           ${{ github.event.inputs.OS_TYPE }}
           y
+          
       - name: Packing(AB)...
         if: ${{ github.event.inputs.SGSI_TYPE }} == 'AB' || ${{ github.event.inputs.SGSI_TYPE }} == 'BOTH'
         run: |
