@@ -6,7 +6,7 @@ exist:
       ROM_URL：
         Description: 'ROM_URL'
         Simple: true
-        default: 'https://download.h2os.com/OnePlus6T/MP/OnePlus6THydrogen_34.K.61_OTA_0610_all_2109280613_c8da429bc7e74e24.zip '
+        default: 'https://download.h2os.com/OnePlus6T/MP/OnePlus6THydrogen_34.K.61_OTA_0610_all_2109280613_c8da429bc7e74e24.zip'
       Postal code_NAME:
         Description: "ZIP_NAME"
         Simple: true
