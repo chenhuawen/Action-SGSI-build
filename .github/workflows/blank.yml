@@ -6,11 +6,11 @@ on:
       ROM_URL:
         description: 'ROM_URL'
         required: true
-        default: 'https://sysupwrdl.vivo.com.cn/upgrade/official/officialFiles/PD2047_A_5.11.3-update-full_1655190484.zip'
+        default: 'https://download.h2os.com/OnePlus6T/MP/OnePlus6THydrogen_34.K.61_OTA_0610_all_2109280613_c8da429bc7e74e24.zip'
       ZIP_NAME:
         description: 'ZIP_NAME'
         required: true
-        default: 'PD2047_A_5.11.3-update-full_1655190484.zip'
+        default: 'OnePlus6THydrogen_34.K.61_OTA_0610_all_2109280613_c8da429bc7e74e24.zip.zip'
       OS_TYPE:
         description: 'OS_TYPE'
         required: true
@@ -29,7 +29,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on : ubuntu-20.04
 
     steps:
       - name: Get the source code of this repositorie...
